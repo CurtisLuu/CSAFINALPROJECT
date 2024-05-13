@@ -37,7 +37,10 @@ import java.util.Scanner;
      // Method to play a single game
      public static void playGame() {
          boolean result = true;
-         generateDeck(); // Generating a new deck of cards
+        //Only generate deck if 50% of deck is used/deck is empty (looked up casino rules)
+         if(deck.size()<=26){
+             generateDeck(); // Generating a new deck of cards
+         }
          generateHand(); // Dealing initial hands
          while (result) {
             //Check if first hand is blackjack for player
@@ -54,7 +57,7 @@ import java.util.Scanner;
              switch (input) {
                  case 1:
                      hitCard("player"); // Player chooses to hit
-                     if (getSum(playerHand) == 21 && getSum(computerHand) != 21) {
+                     if (getSum(playerHand) == 21) {
                          wait(850);
                          System.out.println("Blackjack!" + "\n************************************"); // Player gets a Blackjack
                          winCount++;
@@ -195,7 +198,10 @@ import java.util.Scanner;
  
      // Method to reset the game state
      public static void resetGame() {
-         deck.clear(); // Clear the deck before generating a new one
+        //if deck is less than 50% full shuffle the deck (according to casino rules)
+        if(deck.size()<=26){
+            deck.clear(); // Clear the deck before generating a new one
+        }
          playerHand.clear(); // Clear player's hand before generating a new one
          computerHand.clear(); // Clear computer's hand before generating a new one
      }
