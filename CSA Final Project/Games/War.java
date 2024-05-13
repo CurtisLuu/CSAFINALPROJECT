@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class War {
 
-    public static void main(String[] args) {
+    public static void playGame() {
         Scanner scan = new Scanner(System.in);
         printMenu();
 	    int choice = scan.nextInt();
