@@ -361,7 +361,7 @@ public class War {
     public void print() {
         String output = "Drawn cards: \n";
         for(int i = 0; i < playerList.size(); i++) {
-            output += "Player " + i + ": " + String.valueOf(playerList.get(i).get(0)) + "\n";
+            output += "Player " + i + ": " + String.valueOf(playerList.get(i).get(0)) + ", Has " + String.valueOf(playerList.get(i).size()) + " cards.";
         }
         System.out.println(output);
         System.out.println("Continue? [Y/N]");
