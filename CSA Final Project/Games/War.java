@@ -14,7 +14,7 @@ public class War {
         Scanner scan = new Scanner(System.in);
         printMenu();
 	    int choice = scan.nextInt();
-	    while (choice != 0) {
+	    while (choice != 1) {
             dispatch(choice);
        	    printMenu();
             choice = scan.nextInt();
@@ -25,6 +25,7 @@ public class War {
     ArrayList<ArrayList<Integer>> playerList = new ArrayList<ArrayList<Integer>>();
     int playerNum;
     int cardPer;
+    Scanner scan = new Scanner(System.in);
     Random rand = new Random();
     
     public War(int playerNum) {
@@ -56,17 +57,34 @@ public class War {
     }
     
     public void war(int player1, int player2) {
-        System.out.println("War!");
+        System.out.println("War!\n");
         ArrayList<Integer> prize = new ArrayList<Integer>();
         ArrayList<Integer> compare = new ArrayList<Integer>();
         ArrayList<Integer> warringPlayers = new ArrayList<Integer>();
+        
+        if(playerList.get(player1).size() <= 1) {
+            for(int i = 0; i < compare.size(); i++) {
+                playerList.get(player2).add(prize.get(i));
+                playerList.get(player2).add(compare.get(i));
+            }
+            System.out.println("Player " + playerList.indexOf(playerList.get(player2)) + " wins the war!\n");
+            return;
+        }
+        else if(playerList.get(player2).size() <= 1) {
+            for(int i = 0; i < compare.size(); i++) {
+                playerList.get(player1).add(prize.get(i));
+                playerList.get(player1).add(compare.get(i));
+            }
+            System.out.println("Player " + playerList.indexOf(playerList.get(player1)) + " wins the war!\n");
+            return;
+        }
         
         prize.add(playerList.get(player1).get(0));
         playerList.get(player1).remove(0);
         prize.add(playerList.get(player2).get(0));
         playerList.get(player2).remove(0);
         
-        compare.add(playerList.get(player1).get(0));
+        compare.add(playerList.get(player1).get(0)); //causes error
         playerList.get(player1).remove(0);
         compare.add(playerList.get(player2).get(0));
         playerList.get(player2).remove(0);
@@ -86,20 +104,32 @@ public class War {
                 playerList.get(player1).add(prize.get(i));
                 playerList.get(player1).add(compare.get(i));
             }
+            System.out.println("Player " + playerList.indexOf(playerList.get(player1)) + " wins the war!\n");
         }
         else if(compare.indexOf(max) == 1) {
             for(int i = 0; i < compare.size(); i++) {
                 playerList.get(player2).add(prize.get(i));
                 playerList.get(player2).add(compare.get(i));
             }
+            System.out.println("Player " + playerList.indexOf(playerList.get(player2)) + " wins the war!\n");
         }
     }
     
     public void war(int player1, int player2, int player3) {
-        System.out.println("Three Way War!");
+        System.out.println("Three Way War!\n");
         ArrayList<Integer> prize = new ArrayList<Integer>();
         ArrayList<Integer> compare = new ArrayList<Integer>();
         ArrayList<Integer> warringPlayers = new ArrayList<Integer>();
+        
+        if(playerList.get(player1).size() <= 1) {
+            war(player2, player3);
+        }
+        else if(playerList.get(player2).size() <= 1) {
+            war(player1, player3);
+        }
+        else if(playerList.get(player3).size() <= 1) {
+            war(player1, player2);
+        }
         
         prize.add(playerList.get(player1).get(0));
         playerList.get(player1).remove(0);
@@ -144,26 +174,42 @@ public class War {
                 playerList.get(player1).add(prize.get(i));
                 playerList.get(player1).add(compare.get(i));
             }
+            System.out.println("Player " + playerList.indexOf(playerList.get(player1)) + " wins the war!\n");
         }
         else if(compare.indexOf(max) == 1) {
             for(int i = 0; i < compare.size(); i++) {
                 playerList.get(player2).add(prize.get(i));
                 playerList.get(player2).add(compare.get(i));
             }
+            System.out.println("Player " + playerList.indexOf(playerList.get(player2)) + " wins the war!\n");
         }
         else if(compare.indexOf(max) == 2) {
             for(int i = 0; i < compare.size(); i++) {
                 playerList.get(player3).add(prize.get(i));
                 playerList.get(player3).add(compare.get(i));
             }
+            System.out.println("Player " + playerList.indexOf(playerList.get(player3)) + " wins the war!\n");
         }
     }
     
     public void war(int player1, int player2, int player3, int player4) {
-        System.out.println("Four Way War!");
+        System.out.println("Four Way War!\n");
         ArrayList<Integer> prize = new ArrayList<Integer>();
         ArrayList<Integer> compare = new ArrayList<Integer>();
         ArrayList<Integer> warringPlayers = new ArrayList<Integer>();
+        
+        if(playerList.get(player1).size() <= 1) {
+            war(player2, player3, player4);
+        }
+        else if(playerList.get(player2).size() <= 1) {
+            war(player1, player3, player4);
+        }
+        else if(playerList.get(player3).size() <= 1) {
+            war(player1, player2, player4);
+        }
+        else if(playerList.get(player4).size() <= 1) {
+            war(player1, player2, player3);
+        }
         
         prize.add(playerList.get(player1).get(0));
         playerList.get(player1).remove(0);
@@ -215,24 +261,28 @@ public class War {
                 playerList.get(player1).add(prize.get(i));
                 playerList.get(player1).add(compare.get(i));
             }
+            System.out.println("Player " + playerList.indexOf(playerList.get(player1)) + " wins the war!\n");
         }
         else if(compare.indexOf(max) == 1) {
             for(int i = 0; i < compare.size(); i++) {
                 playerList.get(player2).add(prize.get(i));
                 playerList.get(player2).add(compare.get(i));
             }
+            System.out.println("Player " + playerList.indexOf(playerList.get(player2)) + " wins the war!\n");
         }
         else if(compare.indexOf(max) == 2) {
             for(int i = 0; i < compare.size(); i++) {
                 playerList.get(player3).add(prize.get(i));
                 playerList.get(player3).add(compare.get(i));
             }
+            System.out.println("Player " + playerList.indexOf(playerList.get(player3)) + " wins the war!\n");
         }
         else if(compare.indexOf(max) == 3) {
             for(int i = 0; i < compare.size(); i++) {
                 playerList.get(player4).add(prize.get(i));
                 playerList.get(player4).add(compare.get(i));
             }
+            System.out.println("Player " + playerList.indexOf(playerList.get(player4)) + " wins the war!\n");
         }
     }
     
@@ -243,6 +293,9 @@ public class War {
         for(int i = 0; i < playerNum; i++) {
             compare.add(playerList.get(i).get(0));
             playerList.get(i).remove(0);
+        }
+        for(int j = 0; j < warringPlayers.size(); j++) {
+            warringPlayers.remove(0);
         }
         //finds the card of highest value
         Integer max = compare.get(0);
@@ -292,16 +345,44 @@ public class War {
         return false;
     }
     
-    public void print() {
+    public void printStart() {
         //prints out all hands of the players
-        String output = "Player List: \n";
+        System.out.print("Starting hands: \n");
         for(int i = 0; i < playerList.size(); i++) {
+            System.out.print("Player " + i + ": [ ");
             for(int j = 0; j < playerList.get(i).size(); j++) {
-                output += String.valueOf(playerList.get(i).get(j)) + ", ";
+                System.out.print(String.valueOf(playerList.get(i).get(j)) + " ");
             }
-            output += "\n";
+            System.out.print("]\n");
+        }
+        System.out.println();
+    }
+    
+    public void print() {
+        String output = "Drawn cards: \n";
+        for(int i = 0; i < playerList.size(); i++) {
+            output += "Player " + i + ": " + String.valueOf(playerList.get(i).get(0)) + "\n";
         }
         System.out.println(output);
+        System.out.println("Continue? [Y/N]");
+        output = scan.nextLine();
+        switch(output.toLowerCase()) {
+            case "y": 
+                if(!isDone()) {
+                    oneTurn();
+                    print();
+                    break;
+                }
+            default:
+                int max = 0;
+                for (int i = 1; i < playerList.size(); i++) {
+                    if (playerList.get(max).size() < playerList.get(i).size()) {
+                        max = i;
+                    }
+                }
+                System.out.println("The winner is player " + max + " with " + String.valueOf(playerList.get(max).size()) + " cards!");
+                break;
+        }
     }
     
     //copied method from internet to introduce delays in the game between turns
@@ -316,17 +397,17 @@ public class War {
     public static void printMenu() {
 	System.out.println("\n   Menu   ");
 	System.out.println("   ====================================");
-	System.out.println("0: Quit");
-	System.out.println("1: Simulate a game of War with the computer");
-	System.out.println("2: Rules of War");
+	System.out.println("[1]: Quit");
+	System.out.println("[2]: Simulate a game of War with the computer");
+	System.out.println("[3]: Rules of War");
 	System.out.print("\nEnter your choice: ");
     }
     
     public static void dispatch(int choice) {
 	switch(choice) {
-	    case 0: 
+	    case 1: 
                 break;
-	    case 1:
+	    case 2:
 		int num;
                 Scanner scan = new Scanner(System.in);
                 System.out.print("Input the number of players: ");
@@ -334,13 +415,11 @@ public class War {
                 War war = new War(num);
                 //starts the game
                 war.deal();
-                while(!war.isDone()) {
-                    war.oneTurn();
-                    war.print();
-                    war.wait(1000);
-                }
+                war.printStart();
+                war.oneTurn();
+                war.print();
                 break;
-	    case 2:
+	    case 3:
 		System.out.println("\n   Rules   ");
                 System.out.println("   ====================================");
                 System.out.println("The deck is divided evenly, with each player receiving 26 cards, dealt one at");
