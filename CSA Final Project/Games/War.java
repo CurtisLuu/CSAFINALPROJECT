@@ -364,7 +364,7 @@ public class War {
             output += "Player " + i + ": " + String.valueOf(playerList.get(i).get(0)) + ", Has " + String.valueOf(playerList.get(i).size()) + " cards.";
         }
         System.out.println(output);
-        System.out.println("Continue? [Y/N]");
+        System.out.println("Continue? Type \"Y\" to continue, or anything else to quit.");
         output = scan.nextLine();
         switch(output.toLowerCase()) {
             case "y": 
