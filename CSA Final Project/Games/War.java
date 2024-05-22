@@ -361,10 +361,10 @@ public class War {
     public void print() {
         String output = "Drawn cards: \n";
         for(int i = 0; i < playerList.size(); i++) {
-            output += "Player " + i + ": " + String.valueOf(playerList.get(i).get(0)) + ", Has " + String.valueOf(playerList.get(i).size()) + " cards.";
+            output += "Player " + i + ": " + String.valueOf(playerList.get(i).get(0)) + ". Has " + String.valueOf(playerList.get(i).size()) + " cards.\n";
         }
         System.out.println(output);
-        System.out.println("Continue? Type \"Y\" to continue, or anything else to quit.");
+        System.out.println("Continue? [Y/N]");
         output = scan.nextLine();
         switch(output.toLowerCase()) {
             case "y": 
